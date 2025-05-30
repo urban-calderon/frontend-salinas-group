@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  /* Colors */
+  --black: #1A1A1A;
+  --white: #FFFFFF;
+  --light-gray: #B0B0B0;
+
+  /* Typography */
+  --primary-font: "Poppins", sans-serif;
+}
+
+* {
+  font-family: var(--primary-font);
+  margin: 0;
+  padding: 0;
+  background-color: var(--black);
+}
