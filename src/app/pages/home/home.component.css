@@ -1,0 +1,102 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.content {
+  text-align: center;
+  width: 90%;
+  max-width: 350px;
+}
+
+.welcome-image {
+  width: 180px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+p {
+  max-width: 350px;
+  margin: 15px auto 0;
+  line-height: 1.4;
+  font-size: 1rem;
+}
+
+.form-section {
+  margin-top: 45px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 200;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--light-gray);
+  padding-bottom: 5px;
+}
+
+input {
+  flex: 1;
+  padding: 12px 0;
+  border: none;
+  margin-bottom: 0;
+  font-size: 0.8rem;
+  background: transparent;
+  outline: none;
+}
+
+.mic-button {
+  background: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mic-button:hover {
+  background-color: #3e3c3c;
+}
+
+.mic-icon:hover {
+  background-color: #3e3c3c;
+}
+
+.char-counter {
+  text-align: right;
+  font-size: 0.8rem;
+  margin: 10px 0 40px 0;
+}
+
+.start-button {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--light-gray);
+  color: var(--white);
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.start-button:hover {
+  background-color: var(--purple);
+}
