@@ -12,6 +12,9 @@
           id="name"
           placeholder="Escribe tu nombre"
           maxlength="15"
+          autocomplete="off"
+          [formControl]="nameControl"
+          [class.invalid]="nameControl.invalid && nameControl.touched"
         >
         <button class="mic-button">
           <svg class="mic-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
@@ -20,8 +23,20 @@
           </svg>
         </button>
       </div>
-      <div class="char-counter">0/15 caracteres</div>
-      <button class="start-button">Comenzar</button>
+      <div class="validation-container">
+        <div class="error-message" *ngIf="nameControl.invalid && nameControl.touched">
+          {{ getErrorMessage() }}
+        </div>
+        <div class="char-counter" [class.invalid]="charCount > maxLength">
+          {{charCount}}/{{maxLength}} caracteres
+        </div>
+      </div>
+      <button
+        class="start-button"
+        (click)="emitName()"
+      >
+        Comenzar
+      </button>
     </div>
   </div>
 </div>
