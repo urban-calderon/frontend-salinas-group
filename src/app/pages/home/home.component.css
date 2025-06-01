@@ -80,15 +80,18 @@ input {
 }
 
 .char-counter {
-  text-align: right;
   font-size: 0.8rem;
-  margin: 10px 0 40px 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 150px;
+  text-align: right;
 }
 
 .start-button {
   width: 100%;
   padding: 12px;
-  background-color: var(--light-gray);
+  background-color: var(--button);
   color: var(--white);
   border: none;
   border-radius: 25px;
@@ -98,5 +101,26 @@ input {
 }
 
 .start-button:hover {
-  background-color: var(--purple);
+  background-color: var(--hover-button);
+}
+
+.char-counter.invalid {
+  color: #ff0000;
+}
+
+.validation-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  width: 100%;
+  min-height: 4.5rem;
+  position: relative;
+}
+
+.error-message {
+  color: #ff0000;
+  font-size: 0.8rem;
+  text-align: left;
+  padding-right: 80px;
+  flex-grow: 1;
 }
