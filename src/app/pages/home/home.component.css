@@ -41,53 +41,6 @@ label {
   font-size: 0.9rem;
 }
 
-.input-container {
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid var(--light-gray);
-  padding-bottom: 5px;
-}
-
-input {
-  flex: 1;
-  padding: 12px 0;
-  border: none;
-  margin-bottom: 0;
-  font-size: 0.8rem;
-  background: transparent;
-  outline: none;
-}
-
-.mic-button {
-  background: none;
-  border: none;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.mic-button:hover {
-  background-color: #3e3c3c;
-}
-
-.mic-icon:hover {
-  background-color: #3e3c3c;
-}
-
-.char-counter {
-  font-size: 0.8rem;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 150px;
-  text-align: right;
-}
-
 .start-button {
   width: 100%;
   padding: 12px;
@@ -104,23 +57,12 @@ input {
   background-color: var(--hover-button);
 }
 
-.char-counter.invalid {
-  color: #ff0000;
+.start-button:disabled {
+  background-color: var(--light-gray);
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
-.validation-container {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 0.5rem;
-  width: 100%;
-  min-height: 4.5rem;
-  position: relative;
-}
-
-.error-message {
-  color: #ff0000;
-  font-size: 0.8rem;
-  text-align: left;
-  padding-right: 80px;
-  flex-grow: 1;
+.listening-indicator {
+  margin-bottom: 60px;
 }

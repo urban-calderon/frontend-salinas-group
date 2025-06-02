@@ -1,0 +1,21 @@
+<div class="input-container">
+  <input
+    type="text"
+    [placeholder]="placeholder"
+    [maxlength]="maxLength"
+    autocomplete="off"
+    [formControl]="control"
+    [class.invalid]="control.invalid && control.touched"
+    (keyup.enter)="submitMessage.emit()"
+  />
+  <ng-content></ng-content>
+</div>
+
+<div class="validation-container">
+  <div class="error-message" *ngIf="control.invalid && control.touched">
+    {{ getErrorMessage() }}
+  </div>
+  <div class="char-counter" [class.invalid]="charCount > maxLength">
+    {{charCount}}/{{maxLength}} caracteres
+  </div>
+</div>

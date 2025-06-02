@@ -1,0 +1,12 @@
+<div class="listening-indicator">
+  <button class="action-button cancel" (click)="cancel.emit()">✖</button>
+
+  <div class="equalizer-container">
+    <div class="equalizer">
+      <div class="bar" *ngFor="let bar of bars" [style.animation-delay]="(bar * 0.1) + 's'"></div>
+    </div>
+    <span class="listening-text">Escuchando...</span>
+  </div>
+
+  <button class="action-button confirm" (click)="confirm.emit()">✔</button>
+</div>

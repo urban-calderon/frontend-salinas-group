@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { VoiceRecognitionService } from '../../services/voice-recognition.service';
 
 @Component({
   selector: 'home-page',
@@ -10,6 +11,7 @@ import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 export class HomeComponent {
 
   public maxLength: number = 15;
+  public isRecording = false;
 
   nameControl = new FormControl('', [
     Validators.required,
@@ -17,30 +19,36 @@ export class HomeComponent {
     Validators.pattern(/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]*$/)
   ]);
 
-  get charCount(): number {
-    return this.nameControl.value?.length || 0;
+  constructor(public voiceRecognitionService:VoiceRecognitionService) {
+    this.voiceRecognitionService.init()
   }
 
-  emitName(): void {
+  startRecording() {
+    this.voiceRecognitionService.start();
+    this.isRecording = true;
+  }
+
+  stopRecording() {
+    this.voiceRecognitionService.stop();
+    const currentValue = this.nameControl.value || '';
+    this.nameControl.setValue(currentValue + this.voiceRecognitionService.text);
+    this.voiceRecognitionService.text = '';
+    this.isRecording = false;
+  }
+
+  cancelRecording() {
+    this.voiceRecognitionService.stop();
+    this.voiceRecognitionService.text = '';
+    this.isRecording = false;
+  }
+
+  submitMessage() {
     if (this.nameControl.valid) {
-      console.log('Nombre válido:', this.nameControl.value);
+      console.log('Nombre enviado: ', this.nameControl.value);
+      // TODO: enviar el valor al servicio
+      this.nameControl.reset();
     } else {
-      console.log('no valido')
       this.nameControl.markAsTouched();
     }
   }
-
-  getErrorMessage(): string {
-    if (this.nameControl.hasError('required')) {
-      return 'Este campo es obligatorio';
-    }
-    if (this.nameControl.hasError('maxlength')) {
-      return `Máximo ${this.maxLength} caracteres`;
-    }
-    if (this.nameControl.hasError('pattern')) {
-      return 'Solo se permiten carácteres alfanuméricos';
-    }
-    return '';
-  }
-
 }
