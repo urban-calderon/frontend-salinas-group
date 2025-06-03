@@ -13,7 +13,6 @@
         [maxLength]="maxLength"
         placeholder="Escribe tu nombre"
         [isRecording]="isRecording"
-        (submitMessage)="submitMessage()"
       >
         <app-voice-recognition-button
           *ngIf="!isRecording"

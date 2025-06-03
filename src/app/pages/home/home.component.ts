@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { VoiceRecognitionService } from '../../services/voice-recognition.service';
+import { EncryptService } from '../../services/encrypt.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'home-page',
@@ -8,7 +10,7 @@ import { VoiceRecognitionService } from '../../services/voice-recognition.servic
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
+export class HomePage {
 
   public maxLength: number = 15;
   public isRecording = false;
@@ -19,7 +21,11 @@ export class HomeComponent {
     Validators.pattern(/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]*$/)
   ]);
 
-  constructor(public voiceRecognitionService:VoiceRecognitionService) {
+  constructor(
+    public voiceRecognitionService:VoiceRecognitionService,
+    private encryptService: EncryptService,
+    private router: Router
+  ) {
     this.voiceRecognitionService.init()
   }
 
@@ -45,10 +51,29 @@ export class HomeComponent {
   submitMessage() {
     if (this.nameControl.valid) {
       console.log('Nombre enviado: ', this.nameControl.value);
-      // TODO: enviar el valor al servicio
+      const name = this.nameControl.value;
+      this.sendName(name!);
       this.nameControl.reset();
     } else {
       this.nameControl.markAsTouched();
     }
+  }
+
+  sendName(name: string) {
+    this.encryptService.sendData(name).subscribe({
+      next: (response) => {
+        console.log('Respuesta del servidor:', response);
+        if (response.encryptedText) {
+          //TODO: redirigir a la ruta "encrypt" y que el componente EncryptPage muestre el texto encriptado
+          this.router.navigate(['/encrypt'], {
+            state: { encryptedText: response.encryptedText }
+          });
+          console.log('Texto encriptado:', response.encryptedText);
+        }
+      },
+      error: (error) => {
+        console.error('Error en la petición:', error);
+      },
+    });
   }
 }
